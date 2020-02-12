@@ -2,10 +2,10 @@
 {
     public class ECS
     {
-        // constructor injection 
+        // property + constructor injection 
         private int _threshold;
-        private readonly ITempSensor _tempSensor;
-        private readonly IHeater _heater;
+        public ITempSensor _tempSensor { private get; set; }
+        public IHeater _heater{private get; set; }
 
 
         public ECS(int thr, IHeater heater,ITempSensor tempSensor)
