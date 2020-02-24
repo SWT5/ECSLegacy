@@ -4,11 +4,11 @@
     {
         public static void Main(string[] args)
         {
-            var ecs = new ECS(28, new Heater(), new TempSensor());
+            var ecs = new ECS(28, 28, new Heater(), new TempSensor());
 
             ecs.Regulate();
 
-            ecs.SetThreshold(20);
+            ecs.SetThreshold(20, 28);
 
             ecs.Regulate();
         }

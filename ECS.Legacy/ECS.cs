@@ -3,14 +3,15 @@
     public class ECS
     {
         // property + constructor injection 
-        private int _threshold;
-        public ITempSensor _tempSensor { private get; set; }
-        public IHeater _heater{private get; set; }
+        private int _thresholdLower;
+        private int _threasholdHigher;
+        public ITempSensor _tempSensor { get; set; }
+        public IHeater _heater{ get; set; }
 
 
-        public ECS(int thr, IHeater heater,ITempSensor tempSensor)
+        public ECS(int thrL, int thrH, IHeater heater,ITempSensor tempSensor)
         {
-            SetThreshold(thr);
+            SetThreshold(thrL, thrH); 
             _heater = heater; 
             _tempSensor = tempSensor; 
         }
@@ -18,21 +19,27 @@
         public void Regulate()
         {
             var t = _tempSensor.GetTemp();
-            if (t < _threshold)
+            if (t < _thresholdLower)
                 _heater.TurnOn();
             else
                 _heater.TurnOff();
 
         }
 
-        public void SetThreshold(int thr)
+        public void SetThreshold(int thrL, int thrH)
         {
-            _threshold = thr;
+            _thresholdLower = thrL;
+            _threasholdHigher = thrH;
         }
 
-        public int GetThreshold()
+        public int GetThresholdLower()
         {
-            return _threshold;
+            return _thresholdLower;
+        }
+
+        public int GetThreaholdHigher()
+        {
+            return _threasholdHigher;
         }
 
         public int GetCurTemp()
