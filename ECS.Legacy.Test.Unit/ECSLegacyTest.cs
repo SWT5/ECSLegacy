@@ -10,16 +10,23 @@ namespace ECS.Legacy.Test.Unit
     public class ECSLegacyTest
     {
         private ECS uut;
-        private Heater h1 = new Heater();
-        private TempSensor t1 = new TempSensor();
+        private FakeHeater _fakeHeater;
+        private FakeTempSensor _fakeTemp;
 
         [SetUp]
         public void setUpFunction()
         {
-           uut = new ECS(30, new Heater(), new TempSensor()); 
+            _fakeHeater = new FakeHeater();
+            _fakeTemp = new FakeTempSensor();
+            uut = new ECS(20, 28, _fakeHeater, _fakeTemp);
         }
 
-
-
+        [Test]
+        public void testIfHeaterGetsTurnedOn()
+        {
+            _fakeTemp.SetTemp(15);
+            uut.Regulate();
+            Assert.That(_fakeHeater.IsOn, Is.EqualTo(true));
+        }
     }
 }
