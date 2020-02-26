@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECS.Legacy //sensor
+namespace ECS.Legacy //sensor mellemrum
 {
     public interface ITempSensor
     {
